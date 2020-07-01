@@ -28,7 +28,7 @@ class PropertyListScreenViewController: UIViewController {
 
                     for n in 0...property.properties.count - 1 {
 
-                        let propertyListItem = self.convertDataToPropertyListItem(propertyName: property.properties[n].name, propertyType: property.properties[n].type, propertyRating: property.properties[n].overallRating.overall, imagePrefix: property.properties[n].images[0].prefix, imageSuffix: property.properties[n].images[0].suffix, id: "\(property.properties[n].id)")
+                        let propertyListItem = self.convertDataToPropertyListItem(propertyName: property.properties[n].name, propertyType: property.properties[n].type, propertyRating: property.properties[n].overallRating.overall, imagePrefix: property.properties[n].images[0].prefix, imageSuffix: property.properties[n].images[0].suffix, id: "\(property.properties[n].id)", price: property.properties[n].lowestPricePerNight.value)
 
                          self.propertyListItemArray.append(propertyListItem)
                          self.propertyListTableView.reloadData()
@@ -41,14 +41,14 @@ class PropertyListScreenViewController: UIViewController {
 
     }
 
-    func convertDataToPropertyListItem(propertyName: String, propertyType: String, propertyRating: Int?, imagePrefix: String, imageSuffix: String, id: String) -> PropertyListItem {
+    func convertDataToPropertyListItem(propertyName: String, propertyType: String, propertyRating: Int?, imagePrefix: String, imageSuffix: String, id: String, price: String) -> PropertyListItem {
            var propertyRating = propertyRating
            let imageUrl = (imagePrefix + imageSuffix).replacingOccurrences(of: "http", with: "https")
 
            if propertyRating == nil {
                propertyRating = 0
            }
-           let propertyListItem  = PropertyListItem(url: URL(string: imageUrl)!, propertyName: propertyName, propertyType: propertyType, rating: propertyRating ?? 0, id: "\(id)")
+        let propertyListItem  = PropertyListItem(url: URL(string: imageUrl)!, propertyName: propertyName, propertyType: propertyType, rating: propertyRating ?? 0, id: "\(id)", price: price)
 
            return propertyListItem
        }

@@ -19,10 +19,16 @@ struct PropertyItems:Codable {
     public var type: String
     public var overallRating: Ratings
     public var images: [ImageItems]
+    public var lowestPricePerNight: Price
 }
 
 struct Ratings:Codable {
     public var overall: Int?
+}
+
+struct Price: Codable {
+    public var value: String
+    public var currency: String
 }
 
 struct ImageItems:Codable{

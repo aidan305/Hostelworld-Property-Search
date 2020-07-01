@@ -15,13 +15,15 @@ import UIKit
     var propertyType: String
     var rating: Int
     var id: String
+    var price: String
 
-    init(url: URL, propertyName: String, propertyType: String, rating: Int, id: String) {
+    init(url: URL, propertyName: String, propertyType: String, rating: Int, id: String, price: String) {
         self.url = url
         self.propertyName = propertyName
         self.propertyType = propertyType
         self.rating = rating
         self.id = id
+        self.price = price
     }
 
 }

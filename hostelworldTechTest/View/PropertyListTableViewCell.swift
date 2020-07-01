@@ -21,6 +21,7 @@ class PropertyListTableViewCell: UITableViewCell {
         ratingLbl.text = "\(propertylistItem.rating)"
         nameLbl.text = propertylistItem.propertyName
         typeLbl.text = propertylistItem.propertyType
+        priceLbl.text = propertylistItem.price
         
         if let secureURL = URL(string: "https://" + "\(propertylistItem.url)") {
             DispatchQueue.global(qos: .background).async {
@@ -33,7 +34,6 @@ class PropertyListTableViewCell: UITableViewCell {
             }
         }
     }
-    
 }
 
 
