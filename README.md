@@ -10,9 +10,10 @@ Each item in the property list should contain at least:
 - a thumbnail image of the property if one is present
 
 The property detail screen should contain at least:
-• property name • address
-o address1 o address2 o city
-o country
-• property description
-• property directions
-• at least one of the images from the property
+- property name 
+- address
+- city
+- country
+- property description
+- property directions
+- at least one of the images from the property
