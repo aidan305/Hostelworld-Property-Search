@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class PropertyListScreenViewController: UIViewController {
 
     var propertyListItemArray: [PropertyListItem] = []
@@ -30,7 +28,7 @@ class PropertyListScreenViewController: UIViewController {
 
                     for n in 0...property.properties.count - 1 {
 
-                        let propertyListItem = self.convertDataToPropertyListItem(propertyName: property.properties[n].name, propertyType: property.properties[n].type, propertyRating: property.properties[n].overallRating.overall, imagePrefix: property.properties[n].images[0].prefix, imageSuffix: property.properties[n].images[0].suffix, id: property.properties[n].id)
+                        let propertyListItem = self.convertDataToPropertyListItem(propertyName: property.properties[n].name, propertyType: property.properties[n].type, propertyRating: property.properties[n].overallRating.overall, imagePrefix: property.properties[n].images[0].prefix, imageSuffix: property.properties[n].images[0].suffix, id: "\(property.properties[n].id)")
 
                          self.propertyListItemArray.append(propertyListItem)
                          self.propertyListTableView.reloadData()
@@ -50,7 +48,7 @@ class PropertyListScreenViewController: UIViewController {
            if propertyRating == nil {
                propertyRating = 0
            }
-           let propertyListItem  = PropertyListItem(url: URL(string: imageUrl)!, propertyName: propertyName, propertyType: propertyType, rating: propertyRating ?? 0, id: id)
+           let propertyListItem  = PropertyListItem(url: URL(string: imageUrl)!, propertyName: propertyName, propertyType: propertyType, rating: propertyRating ?? 0, id: "\(id)")
 
            return propertyListItem
        }

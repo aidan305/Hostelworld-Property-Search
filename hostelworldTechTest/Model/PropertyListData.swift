@@ -14,7 +14,7 @@ struct PropertyListData: Codable {
 }
 
 struct PropertyItems:Codable {
-    public var id: String
+    public var id: Int
     public var name: String
     public var type: String
     public var overallRating: Ratings

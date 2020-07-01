@@ -21,11 +21,14 @@ class PropertyListTableViewCell: UITableViewCell {
         ratingLbl.text = "\(propertylistItem.rating)"
         nameLbl.text = propertylistItem.propertyName
         typeLbl.text = propertylistItem.propertyType
-        DispatchQueue.global(qos: .background).async {
-            guard let data = try? Data(contentsOf: propertylistItem.url) else { return }
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async { [weak self] in // back to main thread for UI changes
-                    self?.propertyImageView.image = image
+        
+        if let secureURL = URL(string: "https://" + "\(propertylistItem.url)") {
+            DispatchQueue.global(qos: .background).async {
+                guard let data = try? Data(contentsOf: secureURL) else { return }
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async { [weak self] in // back to main thread for UI changes
+                        self?.propertyImageView.image = image
+                    }
                 }
             }
         }

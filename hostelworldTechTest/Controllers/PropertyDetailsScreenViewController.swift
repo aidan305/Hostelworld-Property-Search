@@ -37,7 +37,7 @@ class PropertyDetailsScreenViewController: UIViewController {
         propertyDetailsPepository.fetchProperyDetails(propertyID: propertyID, completion:  { (PropertyDetailsDataModel) in
 
             if let propertyDetails = PropertyDetailsDataModel {
-                let imageURLString = "\(propertyDetails.images[0].prefix)\(propertyDetails.images[0].prefix)"
+                let imageURLString = "https://\(propertyDetails.images[0].prefix)\(propertyDetails.images[0].suffix)"
                 let imageURL = URL(string: imageURLString)
 
                 let propertyDetailsItem = PropertyDetailsItem(propertyName: propertyDetails.name, address1: propertyDetails.address1, address2: propertyDetails.address1, city: propertyDetails.city.name, country: propertyDetails.city.country, propertyDescription: propertyDetails.description, propertyDirections: propertyDetails.directions, imageUrl: imageURL!)
@@ -50,8 +50,6 @@ class PropertyDetailsScreenViewController: UIViewController {
     
 
     func setPropertyDetails(propertyDetailsItem: PropertyDetailsItem){
-
-        print("the value for name is \(propertyDetailsItem.propertyName)")
 
         DispatchQueue.main.async {
 
@@ -66,19 +64,14 @@ class PropertyDetailsScreenViewController: UIViewController {
             self.propertyDescription.text = propertyDetailsItem.propertyDescription
 
         }
-
-        propertyDetailsItem.imageUrl = URL(string: "https://a.hwstatic.com/image/upload/f_auto,q_auto/v1/propertyimages/4/48058/2.jpg")!
-
-            DispatchQueue.global(qos: .background).async {
-                guard let data = try? Data(contentsOf: propertyDetailsItem.imageUrl) else { return }
-
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async { [weak self] in // back to main thread for UI changes
-                        self?.propertyDetailsImage.contentMode = .scaleAspectFit
-                        self?.propertyDetailsImage.image = image
-                    }
-                }
+        
+        DispatchQueue.global().async {
+            print(propertyDetailsItem.imageUrl)
+            let data = try? Data(contentsOf: propertyDetailsItem.imageUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            DispatchQueue.main.async {
+                self.propertyDetailsImage.image = UIImage(data: data!)
             }
+        }
     }
 }
 
