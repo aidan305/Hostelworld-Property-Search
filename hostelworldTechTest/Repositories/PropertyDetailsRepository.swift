@@ -12,7 +12,7 @@ class PropertyDetailsRepository {
 
     func fetchProperyDetails(propertyID: String, completion: @escaping (PropertyDetailsData?) -> Void) {
 
-    let propertyDetailsURL = "https://api.m.hostelworld.com/2.1/properties/\(propertyID)"
+    let propertyDetailsURL = "https://api.m.hostelworld.com/2.2/properties/\(propertyID)"
 
     if let url = URL(string: propertyDetailsURL){
 

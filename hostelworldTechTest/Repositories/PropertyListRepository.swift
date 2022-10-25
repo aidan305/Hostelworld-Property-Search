@@ -12,7 +12,7 @@ class PropertyListRepository {
 
 func fetchProperties(completion: @escaping (PropertyListData?) -> Void) {
 
-    let propertyListURL = "https://api.m.hostelworld.com/2.1/cities/1530/properties/"
+    let propertyListURL = "https://api.m.hostelworld.com/2.2/cities/1530/properties/"
 
     if let url = URL(string: propertyListURL){
 
